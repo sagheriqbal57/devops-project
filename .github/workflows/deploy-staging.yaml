@@ -31,6 +31,11 @@ jobs:
         with:
           path: ./dist
 
+      - name: Debug OIDC Token
+        env:
+          ACTIONS_ID_TOKEN_REQUEST_URL: ${{ secrets.ACTIONS_ID_TOKEN_REQUEST_URL }}
+        run: echo "OIDC Token URL: $ACTIONS_ID_TOKEN_REQUEST_URL"
+
   deploy:
     runs-on: ubuntu-latest
     needs: build
