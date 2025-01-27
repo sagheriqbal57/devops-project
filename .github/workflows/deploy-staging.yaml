@@ -31,11 +31,6 @@ jobs:
         with:
           path: ./dist
 
-      - name: Debug OIDC Token
-        env:
-          ACTIONS_ID_TOKEN_REQUEST_URL: ${{ secrets.ACTIONS_ID_TOKEN_REQUEST_URL }}
-        run: echo "OIDC Token URL: $ACTIONS_ID_TOKEN_REQUEST_URL"
-
   deploy:
     runs-on: ubuntu-latest
     needs: build
@@ -44,5 +39,11 @@ jobs:
       contents: read
     environment: staging-env
     steps:
+      - name: Request OIDC Token
+        id: oidc-token
+        run: echo "Requesting OIDC token..."
+        env:
+          OIDC_TOKEN: ${{ steps.deploy.outputs.id-token }}
+
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
