@@ -1,8 +1,11 @@
 {
   "name": "term-project-f24",
   "version": "1.0.0",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "scripts": {
+    "build": "your-build-command",
+    "validate": "your-validation-command",
+    "lint": "stylelint 'src/**/*.css'",
+    "start": "your-start-command"
   },
   "repository": {
     "type": "git",
